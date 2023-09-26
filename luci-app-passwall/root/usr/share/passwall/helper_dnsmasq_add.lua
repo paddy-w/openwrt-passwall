@@ -290,7 +290,7 @@ if not fs.access(CACHE_DNS_PATH) then
 
 	--如果没有使用回国模式
 	if not returnhome then
-		if fs.access("/usr/share/passwall/rules/gfwlist") then
+		if gfwlist and fs.access("/usr/share/passwall/rules/gfwlist") then
 			fwd_dns = TUN_DNS
 			if CHNROUTE_MODE_DEFAULT_DNS == "chinadns_ng" and CHINADNS_DNS ~= "0" then
 				fwd_dns = nil
@@ -320,6 +320,7 @@ if not fs.access(CACHE_DNS_PATH) then
 			log(string.format("  - 防火墙域名表(gfwlist)：%s", fwd_dns or "默认"))
 		end
 
+                --[[
 		if chnlist and fs.access("/usr/share/passwall/rules/chnlist") and (CHNROUTE_MODE_DEFAULT_DNS == "remote" or (CHNROUTE_MODE_DEFAULT_DNS == "chinadns_ng" and CHINADNS_DNS ~= "0")) then
 			fwd_dns = LOCAL_DNS
 			if CHNROUTE_MODE_DEFAULT_DNS == "chinadns_ng" and CHINADNS_DNS ~= "0" then
@@ -335,6 +336,7 @@ if not fs.access(CACHE_DNS_PATH) then
 			end
 			log(string.format("  - 中国域名表(chnroute)：%s", fwd_dns or "默认"))
 		end
+                ]]
 	else
 		if fs.access("/usr/share/passwall/rules/chnlist") then
 			local chnlist_str = sys.exec('cat /usr/share/passwall/rules/chnlist | grep -v -E "^#" | grep -v -E "' .. excluded_domain_str .. '"')

@@ -37,7 +37,7 @@ UTIL_SS=$LUA_UTIL_PATH/util_shadowsocks.lua
 UTIL_XRAY=$LUA_UTIL_PATH/util_xray.lua
 UTIL_TROJAN=$LUA_UTIL_PATH/util_trojan.lua
 UTIL_NAIVE=$LUA_UTIL_PATH/util_naiveproxy.lua
-UTIL_HYSTERIA=$LUA_UTIL_PATH/util_hysteria.lua
+UTIL_HYSTERIA=$LUA_UTIL_PATH/util_hysteria2.lua
 UTIL_TUIC=$LUA_UTIL_PATH/util_tuic.lua
 
 echolog() {
@@ -1020,7 +1020,7 @@ run_redir() {
 		fi
 
 		[ -z "$tcp_node_socks_flag" ] && {
-			[ "$tcp_node_socks" = "1" ] && {
+			[ "$tcp_node_socks" = "1" ] && [ $tcp_node_socks_port != 0 ] && {
 				local port=$tcp_node_socks_port
 				local config_file="SOCKS_TCP.json"
 				local log_file="SOCKS_TCP.log"
