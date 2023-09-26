@@ -96,7 +96,7 @@ function gen_config(var)
 		} or nil,
 		fastOpen = (node.fast_open == "1") and true or false,
 		lazy = (node.hysteria_lazy_start) and true or false,
-		socks5 = (local_socks_address and local_socks_port) and {
+		socks5 = (local_socks_address and (local_socks_port ~= "0")) and {
 			listen = local_socks_address .. ":" .. local_socks_port,
 			timeout = 300,
 			disableUDP = false,
